@@ -45,13 +45,13 @@ export default function App() {
         <Navbar />
         <main>
           <Hero />
-          <ClientLogos />
           {isLoggedIn && <AppLauncher />}
           <Charts />
           <SolutionGate />
           <Ecosystem />
           <ContactBanner />
           <FAQ />
+          <ClientLogos />
         </main>
         <Footer />
       </div>
