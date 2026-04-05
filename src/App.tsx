@@ -5,6 +5,8 @@ import AppLauncher from './components/AppLauncher'
 import Charts from './components/Charts'
 import SolutionGate from './components/SolutionGate'
 import Ecosystem from './components/Ecosystem'
+import Changelog from './components/Changelog'
+import SocialProof from './components/SocialProof'
 import ContactBanner from './components/ContactBanner'
 import FAQ from './components/FAQ'
 import Footer from './components/Footer'
@@ -17,7 +19,7 @@ export default function App() {
   return (
     <div className="relative min-h-screen bg-background text-foreground overflow-hidden">
       {/* Threads background */}
-      <div className="pointer-events-none fixed -top-[20vh] left-0 right-0 h-[140vh] z-0 opacity-40">
+      <div className="pointer-events-none fixed -top-[20vh] left-0 right-0 h-[140vh] z-0 opacity-40 dark:opacity-70">
         <Threads
           color={[0.55, 0.35, 0.85]}
           amplitude={2.5}
@@ -49,8 +51,14 @@ export default function App() {
           <Charts />
           <SolutionGate />
           <Ecosystem />
+          {/* <SocialProof /> */}
           <ContactBanner />
-          <FAQ />
+          <section className="w-full px-5 pt-12 pb-5">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <Changelog />
+              <FAQ />
+            </div>
+          </section>
           <ClientLogos />
         </main>
         <Footer />

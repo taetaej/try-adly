@@ -30,28 +30,24 @@ const faqs = [
 
 export default function FAQ() {
   return (
-    <section className="w-full px-5 pt-12 pb-5">
-      <div className="mb-6">
-        <h2 className="text-xl font-bold tracking-tight mb-1">FAQ</h2>
-        <p className="text-muted-foreground text-xs">자주 묻는 질문을 확인해보세요.</p>
-      </div>
-
+    <div>
+      <h2 className="text-xl font-bold tracking-tight mb-4">FAQ</h2>
       <Accordion className="space-y-1.5">
         {faqs.map((faq, i) => (
           <AccordionItem
             key={i}
             value={`faq-${i}`}
-            className="border border-white/40 dark:border-border/40 rounded-xl px-4 bg-white/50 dark:bg-white/[0.03] backdrop-blur-2xl shadow-[0_1px_3px_rgba(0,0,0,0.04)] data-[state=open]:bg-white/70 dark:data-[state=open]:bg-white/[0.05]"
+            className="rounded-xl px-4 py-[11px] bg-white/30 dark:bg-white/[0.03] backdrop-blur-xl data-[state=open]:bg-white/50 dark:data-[state=open]:bg-white/[0.05]"
           >
-            <AccordionTrigger className="text-xs font-medium hover:no-underline py-3.5">
+            <AccordionTrigger className="text-xs font-medium hover:no-underline">
               {faq.q}
             </AccordionTrigger>
-            <AccordionContent className="text-xs text-muted-foreground pb-3.5 leading-relaxed">
+            <AccordionContent className="text-xs text-muted-foreground pt-2 leading-relaxed">
               {faq.a}
             </AccordionContent>
           </AccordionItem>
         ))}
       </Accordion>
-    </section>
+    </div>
   )
 }

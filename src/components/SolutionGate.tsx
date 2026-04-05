@@ -104,11 +104,11 @@ export default function SolutionGate() {
           onClick={() => setActiveSol(null)}
         >
           {/* Backdrop */}
-          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm animate-[fadeIn_0.2s_ease]" />
 
           {/* Modal */}
           <div
-            className="relative w-full max-w-2xl bg-background rounded-2xl shadow-2xl overflow-hidden"
+            className="relative w-full max-w-2xl bg-background rounded-2xl shadow-2xl overflow-hidden animate-[modalIn_0.3s_ease_both]"
             onClick={e => e.stopPropagation()}
           >
             {/* Close */}
