@@ -25,15 +25,15 @@ const apps: AppItem[] = [
 ]
 
 const advertisers = [
-  { name: 'Brand A', color: 'bg-foreground' },
-  { name: 'Brand B', color: 'bg-muted-foreground' },
-  { name: 'Brand C', color: 'bg-foreground/60' },
+  { name: 'Google', logo: '/clients/google.svg' },
+  { name: 'Meta', logo: '/clients/meta.svg' },
+  { name: 'Amazon', logo: '/clients/amazon.svg' },
 ]
 
 const notices = [
-  'OPERA v3.2 업데이트 — 자동 입찰 기능이 개선되었습니다',
-  'AiQ 신규 리포트 템플릿 3종 추가',
-  '시스템 점검 안내: 4/12(토) 02:00–04:00',
+  '[정기점검] 2026년 4월 9일(수) 18:00~20:00 시스템 정기점검이 진행됩니다. 점검 중 OPERA, BIDOPT, BIDAUTO 서비스 이용이 일시 중단됩니다.',
+  '[공지] AiQ v2.1 업데이트 — 업종별 벤치마크 리포트 기능이 추가되었습니다. 자세한 내용은 Updates를 확인해주세요.',
+  '[안내] 2026년 4월 광고 성과 데이터는 매일 09:00 기준으로 갱신됩니다.',
 ]
 
 export default function AppLauncher() {
@@ -50,11 +50,14 @@ export default function AppLauncher() {
             <h3 className="text-xs font-semibold mb-2">My Clients</h3>
             <div className="flex items-center">
               <div className="flex -space-x-2.5">
-                {advertisers.map(adv => (
-                  <div key={adv.name} className={`w-8 h-8 rounded-full ${adv.color} border-2 border-background flex items-center justify-center`}>
-                    <span className="text-[9px] font-bold text-background">{adv.name.charAt(0)}</span>
-                  </div>
-                ))}
+                {advertisers.map((adv, i) => {
+                  const bgs = ['bg-neutral-200 dark:bg-neutral-700', 'bg-neutral-300 dark:bg-neutral-600', 'bg-neutral-400 dark:bg-neutral-500']
+                  return (
+                    <div key={adv.name} className={`w-8 h-8 rounded-full ${bgs[i]} border-2 border-background flex items-center justify-center overflow-hidden`}>
+                      <img src={adv.logo} alt={adv.name} className="w-4 h-4 object-contain dark:invert" onError={e => { (e.target as HTMLImageElement).style.display = 'none'; (e.target as HTMLImageElement).parentElement!.innerHTML = `<span class="text-[9px] font-bold text-muted-foreground">${adv.name.charAt(0)}</span>` }} />
+                    </div>
+                  )
+                })}
               </div>
               <span className="text-[10px] text-muted-foreground ml-3">{advertisers.length} clients</span>
             </div>
