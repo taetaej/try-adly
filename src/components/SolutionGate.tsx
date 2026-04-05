@@ -86,7 +86,7 @@ export default function SolutionGate() {
                       onClick={() => setActiveSol(sol)}
                       className="w-full text-left px-3 py-2 rounded-lg bg-black/[0.03] dark:bg-white/[0.04] hover:bg-black/[0.06] dark:hover:bg-white/[0.07] transition-colors cursor-pointer"
                     >
-                      <p className="text-[11px] font-semibold tracking-wide">{sol.name}</p>
+                      <p className="text-[11px] font-semibold tracking-wide">{sol.name.toUpperCase()}</p>
                       <p className="text-[9px] text-muted-foreground leading-relaxed">{sol.summary}</p>
                     </button>
                   ))}

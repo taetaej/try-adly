@@ -80,7 +80,7 @@ export default function AppLauncher() {
                 }`}
               >
                 {!app.available && <Lock className="w-2.5 h-2.5" />}
-                {app.name}
+                {app.name.toUpperCase()}
                 {app.available && <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />}
               </button>
             ))}

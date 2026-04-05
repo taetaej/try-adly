@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Moon, Sun, Menu, X } from 'lucide-react'
+import { useState, useRef, useEffect } from 'react'
+import { Moon, Sun, Menu, X, Settings, LogOut } from 'lucide-react'
 import { useTheme } from './ThemeProvider'
 import { useAuth } from './AuthProvider'
 
@@ -14,6 +14,19 @@ export default function Navbar() {
   const { theme, toggleTheme } = useTheme()
   const { isLoggedIn, toggleAuth } = useAuth()
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [profileOpen, setProfileOpen] = useState(false)
+  const profileRef = useRef<HTMLDivElement>(null)
+
+  // Close dropdown on outside click
+  useEffect(() => {
+    function handleClick(e: MouseEvent) {
+      if (profileRef.current && !profileRef.current.contains(e.target as Node)) {
+        setProfileOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClick)
+    return () => document.removeEventListener('mousedown', handleClick)
+  }, [])
 
   return (
     <header className="sticky top-0 z-50 w-full">
@@ -51,12 +64,44 @@ export default function Navbar() {
             >
               {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </button>
-            <button
-              onClick={toggleAuth}
-              className="hidden md:inline-flex px-4 py-1.5 text-xs font-medium rounded-full bg-foreground text-background hover:opacity-90 transition-opacity"
-            >
-              {isLoggedIn ? 'Sign out' : 'Sign in'}
-            </button>
+
+            {isLoggedIn ? (
+              <div ref={profileRef} className="relative hidden md:block">
+                <button
+                  onClick={() => setProfileOpen(!profileOpen)}
+                  className="w-8 h-8 rounded-full bg-foreground text-background flex items-center justify-center text-xs font-bold hover:opacity-90 transition-opacity"
+                >
+                  JS
+                </button>
+
+                {profileOpen && (
+                  <div className="absolute right-0 mt-2 w-40 rounded-xl bg-background border border-border/50 shadow-lg py-1 z-50">
+                    <button
+                      onClick={() => { setProfileOpen(false) }}
+                      className="w-full flex items-center gap-2 px-4 py-2 text-xs text-muted-foreground hover:text-foreground hover:bg-black/[0.03] dark:hover:bg-white/[0.05] transition-colors"
+                    >
+                      <Settings className="w-3.5 h-3.5" />
+                      Settings
+                    </button>
+                    <button
+                      onClick={() => { toggleAuth(); setProfileOpen(false) }}
+                      className="w-full flex items-center gap-2 px-4 py-2 text-xs text-muted-foreground hover:text-foreground hover:bg-black/[0.03] dark:hover:bg-white/[0.05] transition-colors"
+                    >
+                      <LogOut className="w-3.5 h-3.5" />
+                      Sign out
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <button
+                onClick={toggleAuth}
+                className="hidden md:inline-flex px-4 py-1.5 text-xs font-medium rounded-full bg-foreground text-background hover:opacity-90 transition-opacity"
+              >
+                Sign in
+              </button>
+            )}
+
             <button
               className="md:hidden p-2 rounded-full hover:bg-black/[0.04] dark:hover:bg-white/[0.06] transition-colors"
               onClick={() => setMobileOpen(!mobileOpen)}
