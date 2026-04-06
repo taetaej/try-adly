@@ -6,7 +6,6 @@ import Charts from './components/Charts'
 import SolutionGate from './components/SolutionGate'
 import Ecosystem from './components/Ecosystem'
 import Changelog from './components/Changelog'
-// import SocialProof from './components/SocialProof'
 import ContactBanner from './components/ContactBanner'
 import FAQ from './components/FAQ'
 import Footer from './components/Footer'
@@ -51,7 +50,6 @@ export default function App() {
           <Charts />
           <SolutionGate />
           <Ecosystem />
-          {/* <SocialProof /> */}
           <ContactBanner />
           <section className="w-full px-5 pt-12 pb-5">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
